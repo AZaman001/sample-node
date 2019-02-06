@@ -28,3 +28,20 @@ build:
         name: run the app
         code: |
            node --version
+
+
+# push to OCIR
+# repo DOES NOT INCLUDE TAG
+# updated registry && changed PORT to 80
+push-release:
+  steps:
+    - internal/docker-push:
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
+        repository: $DOCKER_REPO
+        registry: $DOCKER_REGISTRY
+        tag: ocir
+        working-dir: /pipeline/source
+        ports: $PORT
+        env: PORT=$PORT
+        cmd: npm start
