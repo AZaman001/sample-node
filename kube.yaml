@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: sampledep
+spec:
+ selector:
+   matchLabels:
+     app: node-app
+ replicas: 1
+ template:
+   metadata:
+     labels:
+       app: node-app
+   spec:
+     containers:
+     - name: node-kube
+   # enter the path to your image, be sure to include the correct region prefix
+       image: iad.ocir.io/gse00014942/sample-node/hello:ocir
+       command: [ "/bin/sh", "-c", "--" ]
+       args: [ "while true; do sleep 30; done; npm start;" ]
+       ports:
+       - containerPort: 3000
+     imagePullSecrets:
+   # enter the name of the secret you created
+     - name: ocirsecret4
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: serve-sample
+spec:
+ type: LoadBalancer
+ ports:
+ - port: 80
+   protocol: TCP
+   targetPort: 3000
+ selector:
+   app: node-app
