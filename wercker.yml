@@ -50,7 +50,7 @@ push-release:
         ports: $PORT
         cmd: node app.js
 
-# Try this Wercker pipeline
+# Add this new pipeline in Wercker 
 # Deploy from Oracle Container Registry to the Oracle Container Engine (Kubernetes)
 deploy-to-OKE:
     box:
