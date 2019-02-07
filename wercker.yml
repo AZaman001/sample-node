@@ -27,7 +27,7 @@ build:
     - script:
         name: run the app
         code: |
-           node app.js
+           node --version
 
 
 # push to OCIR
@@ -43,5 +43,4 @@ push-release:
         tag: ocir
         working-dir: /pipeline/source
         ports: $PORT
-        env: PORT=$PORT
-        cmd: npm start
+        cmd: node app.js
