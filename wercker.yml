@@ -30,10 +30,8 @@ build:
            node --version
 
 
-# push to OCIR
-# repo DOES NOT INCLUDE TAG
-# try to build Dockerfile in repo
-push-release:
+# build Dockerfile in repo, and push the image created to OCIR
+build-and-push:
   steps:
 
     - internal/docker-build:
