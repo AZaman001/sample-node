@@ -1,5 +1,6 @@
 box: 
   id: node:latest
+  entrypoint: /bin/bash -c -- while true; do sleep 30; done;
   ports: 
     - "3000"
 
