@@ -33,9 +33,14 @@ build:
 
 # push to OCIR
 # repo DOES NOT INCLUDE TAG
-# updated registry && changed PORT to 80
+# try to build Dockerfile in repo
 push-release:
   steps:
+
+    - internal/docker-build:
+      dockerfile: Dockerfile
+      image-name: my-new-image
+
     - internal/docker-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
