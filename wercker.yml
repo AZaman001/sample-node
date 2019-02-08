@@ -27,16 +27,16 @@ build:
     - script:
         name: run the app
         code: |
-           node --version
+           node app.js
 
 
 # build Dockerfile in repo, and push the image created to OCIR
 build-and-push:
   steps:
 
-    - internal/docker-build:
-      dockerfile: Dockerfile
-      image-name: my-new-image
+  #  - internal/docker-build:
+  #    dockerfile: Dockerfile
+  #    image-name: my-new-image
 
     - internal/docker-push:
         username: $DOCKER_USERNAME
@@ -50,7 +50,7 @@ build-and-push:
 
 # Add this new pipeline in Wercker 
 # Deploy from Oracle Container Registry to the Oracle Container Engine (Kubernetes)
-deploy-to-OKE:
+deploy-to-OKE: 
     box:
         id: alpine
         entrypoint: /bin/sh -c
